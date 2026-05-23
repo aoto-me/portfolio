@@ -1,0 +1,26 @@
+.header {
+  padding: min(1.7vw, 15px) 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+
+  a {
+    display: block;
+    width: 30vw;
+    max-width: 200px;
+    height: auto;
+    line-height: 1;
+    padding: 2px;
+
+    img {
+      vertical-align: top;
+      width: 100%;
+      height: auto;
+    }
+  }
+}

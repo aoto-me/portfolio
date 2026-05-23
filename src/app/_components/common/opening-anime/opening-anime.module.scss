@@ -1,0 +1,56 @@
+.anime {
+  width: 100vw;
+  height: 100lvh;
+  background-color: #fff;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  clip-path: url('#clipOpening');
+
+  &.isHidden {
+    display: none;
+  }
+
+  &__inner {
+    width: 100vw;
+    height: 100svh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &__text {
+      display: flex;
+      color: var(--bg-primary);
+      font-family: 'Cambria', 'Iowan Old Style', 'Palatino', 'Times New Roman', serif;
+      font-size: min(5.5vw, 1.45rem);
+      letter-spacing: 0.1em;
+      margin-bottom: 3vh;
+    }
+
+    &__charOuter {
+      display: inline-block;
+      overflow: hidden;
+    }
+
+    &__char {
+      display: inline-block;
+      transform: translateY(110%);
+    }
+  }
+}
+
+.clipSvg {
+  width: 0;
+  height: 0;
+
+  &.isHidden {
+    display: none;
+  }
+
+  & svg {
+    width: 0;
+    height: 0;
+  }
+}

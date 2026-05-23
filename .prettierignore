@@ -1,0 +1,10 @@
+node_modules
+build
+dist
+vendor
+.htaccess
+.next
+public
+.lintstagedrc
+.prettierrc
+.vscode

@@ -27,7 +27,7 @@
     "three": "^0.184.0"
   },
   "devDependencies": {
-    "@types/node": "^24.12.3",
+    "@types/node": "^25.9.1",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "cross-env": "^10.1.0",

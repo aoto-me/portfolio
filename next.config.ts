@@ -1,5 +1,7 @@
 import type { NextConfig } from 'next';
 
+const isLanDev = process.env.LAN_DEV === 'true';
+
 const ContentSecurityPolicy = `
   default-src 'self';
   script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com;
@@ -37,11 +39,17 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
+  allowedDevOrigins: isLanDev ? ['192.168.43.73'] : undefined,
+
   experimental: {
     viewTransition: true,
   },
 
   headers() {
+    if (isLanDev) {
+      return [];
+    }
+
     return [
       {
         headers: securityHeaders,

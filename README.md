@@ -11,7 +11,7 @@
 
 ## スクリーンショット
 
-<video src="https://github.com/user-attachments/assets/4e4a506c-194b-47d9-8a1d-a942bf97ea02" controls width="100%"></video>
+<video src="https://github.com/user-attachments/assets/3aaab69d-5efc-4f23-b864-53646583d019" controls width="100%"></video>
 
 &nbsp;
 

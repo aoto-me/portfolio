@@ -1,23 +1,33 @@
 # パッケージ更新状況
 
-## 2026-05時点
+## 2026-07時点
+
+### `eslint-import-resolver-typescript` — 3.x → 4.x（更新済み）
+
+- 対応:
+  - プロジェクトの top-level devDependency を `^4.4.5` に更新。`eslint-config-next` 側は内部で `^3.5.2` を要求するため、`node_modules/eslint-config-next/node_modules/` にネストされた3系と共存する形になるが、Node の module resolution は project root に近い top-level の4系を優先して解決するため、以前発生していた "invalid interface" エラーは再発しなかった（`npm run lint` / `npm run build` で確認済み）。
+  - これにより `typescript` 6.x 更新のブロッカー（TS6内部API非対応）が解消された。
+
+### `typescript` — 5.x → 6.0.3（更新済み）
+
+- 対応:
+  - `typescript-eslint@8.63.0` の対応範囲（`>=4.8.4 <6.1.0`）内である `6.0.3` に更新。
+  - `eslint-import-resolver-typescript@3.10.1`（`eslint-config-next` 同梱）のままでも `npm run lint` / `npm run build` ともにエラーは発生しなかった。以前記録した「TS6内部API非対応でlintエラー」という懸念は、少なくとも安定版6.0.3 + このプロジェクトの構成では再現しなかった（resolver 4系への更新は別件として実施済みだが、本更新自体はresolver更新に依存しない）。
+  - TypeScript 7.x は `typescript-eslint` が未対応（`<6.1.0`）のため見送り。
 
 ### `eslint` — 9.x → 10.x（見送り中）
 
 - 見送り理由:
   - `eslint-config-next` が内部で同梱している `eslint-plugin-react@7.37.5` が ESLint 10 で削除された API（`context.getFilename()`）を使用しているため、lint 実行時にエラーが発生する。
+  - 2026-07時点でも `eslint-config-next@16.2.10` は `eslint-plugin-react: ^7.37.0` を要求しており、インストールされる実体は依然 `7.37.5`（`node_modules/eslint-plugin-react/lib/rules/jsx-filename-extension.js:64` で `context.getFilename()` 使用を確認）。状況は変わっていない。
 
 - 更新条件:
   - `eslint-config-next` が `eslint-plugin-react` を ESLint 10 対応版に更新されたら。
 
-### `typescript` — 5.x → 6.x（見送り中）
+### `eslint-plugin-unicorn` — 64.x → 71.x（見送り中）
 
 - 見送り理由:
-  - `eslint-config-next` に同梱されている `eslint-import-resolver-typescript@3.10.1` が TypeScript 6 の内部 API 変更に対応していないため、lint 実行時にエラーが発生する。
-  - `typescript-eslint` 自体は `>=4.8.4 <6.1.0` をサポートしており、TypeScript 6.0.x は技術的に対応範囲内。ただし `eslint-config-next` 側の依存が追いついていない。
-
-- 更新条件:
-  - `eslint-config-next` が `eslint-import-resolver-typescript@4.x`（TypeScript 6 対応済み）に更新されたら。
+  - peer dependency が `eslint: >=10.4` のため、上記 `eslint` 10.x 更新待ち。
 
 ---
 

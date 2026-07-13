@@ -8,6 +8,13 @@
   - プロジェクトの top-level devDependency を `^4.4.5` に更新。`eslint-config-next` 側は内部で `^3.5.2` を要求するため、`node_modules/eslint-config-next/node_modules/` にネストされた3系と共存する形になるが、Node の module resolution は project root に近い top-level の4系を優先して解決するため、以前発生していた "invalid interface" エラーは再発しなかった（`npm run lint` / `npm run build` で確認済み）。
   - これにより `typescript` 6.x 更新のブロッカー（TS6内部API非対応）が解消された。
 
+### `typescript` — 5.x → 6.0.3（更新済み）
+
+- 対応:
+  - `typescript-eslint@8.63.0` の対応範囲（`>=4.8.4 <6.1.0`）内である `6.0.3` に更新。
+  - `eslint-import-resolver-typescript@3.10.1`（`eslint-config-next` 同梱）のままでも `npm run lint` / `npm run build` ともにエラーは発生しなかった。以前記録した「TS6内部API非対応でlintエラー」という懸念は、少なくとも安定版6.0.3 + このプロジェクトの構成では再現しなかった（resolver 4系への更新は別件として実施済みだが、本更新自体はresolver更新に依存しない）。
+  - TypeScript 7.x は `typescript-eslint` が未対応（`<6.1.0`）のため見送り。
+
 ### `eslint` — 9.x → 10.x（見送り中）
 
 - 見送り理由:

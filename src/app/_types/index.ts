@@ -55,6 +55,23 @@ export interface WorksListResponse {
   totalCount: number;
 }
 
+export interface WorksLlmsList {
+  category: string[];
+  id: string;
+  language: string[];
+  part: string[];
+  siteType: string;
+  text: string;
+  title: string;
+  tool: string[];
+  url: string;
+  year: string;
+}
+
+export interface WorksLlmsListResponse {
+  contents: WorksLlmsList[];
+}
+
 export interface WorksNavItem {
   id: string;
   title: string;

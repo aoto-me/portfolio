@@ -1,17 +1,23 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import Script from 'next/script';
 import { Background, FirstLoad, OpeningAnime } from './_components/common';
 import './globals.scss';
+
+export const viewport: Viewport = {
+  themeColor: '#121b3b',
+};
 
 export const generateMetadata = (): Metadata => {
   const url = process.env.NEXT_PUBLIC_URL;
 
   return {
     alternates: { canonical: `${url}/` },
-    description: 'アオトメグミのポートフォリオサイトです。',
+    description:
+      'アオトメグミのポートフォリオサイトです。自主制作・受託制作で作成したWebサイトの制作実績を掲載しています。',
+    metadataBase: url ? new URL(url) : undefined,
     openGraph: {
-      description: 'アオトメグミのポートフォリオサイトです。',
-      images: ['/ogp.jpg'],
+      description:
+        'アオトメグミのポートフォリオサイトです。自主制作・受託制作で作成したWebサイトの制作実績を掲載しています。',
       locale: 'ja_JP',
       siteName: 'Portfolio - AotoMegumi',
       title: 'Portfolio - AotoMegumi',
@@ -25,6 +31,13 @@ export const generateMetadata = (): Metadata => {
     title: {
       default: 'Portfolio - AotoMegumi',
       template: '%s | Portfolio - AotoMegumi',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      description:
+        'アオトメグミのポートフォリオサイトです。自主制作・受託制作で作成したWebサイトの制作実績を掲載しています。',
+      images: ['/opengraph-image.jpg'],
+      title: 'Portfolio - AotoMegumi',
     },
   };
 };

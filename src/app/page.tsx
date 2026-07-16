@@ -21,8 +21,9 @@ const Home = async () => {
   const jsonLd: WithContext<ItemList> = {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
-    description: 'アオトメグミのポートフォリオサイトです。',
-    image: `${url}/ogp.jpg`,
+    description:
+      'アオトメグミのポートフォリオサイトです。自主制作・受託制作で作成したWebサイトの制作実績を掲載しています。',
+    image: `${url}/opengraph-image.jpg`,
     itemListElement,
     name: 'Portfolio - AotoMegumi',
   };

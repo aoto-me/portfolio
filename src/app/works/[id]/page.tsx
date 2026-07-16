@@ -33,7 +33,7 @@ export const generateMetadata = async ({ params }: { params: Promise<{ id: strin
     description: post.text,
     openGraph: {
       description: post.text,
-      images: ['/ogp.jpg'],
+      images: ['/opengraph-image.jpg'],
       locale: 'ja_JP',
       siteName: 'Portfolio - AotoMegumi',
       title: post.title,
@@ -41,6 +41,12 @@ export const generateMetadata = async ({ params }: { params: Promise<{ id: strin
       url: url,
     },
     title: post.title,
+    twitter: {
+      card: 'summary_large_image',
+      description: post.text,
+      images: ['/opengraph-image.jpg'],
+      title: post.title,
+    },
   };
 };
 

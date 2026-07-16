@@ -1,6 +1,7 @@
 import type { NextConfig } from 'next';
 
 const isLanDev = process.env.LAN_DEV === 'true';
+const lanDevHost = process.env.LAN_DEV_HOST;
 
 const ContentSecurityPolicy = `
   default-src 'self';
@@ -21,6 +22,10 @@ const ContentSecurityPolicy = `
 
 const securityHeaders = [
   {
+    key: 'Strict-Transport-Security',
+    value: 'max-age=63072000; includeSubDomains; preload',
+  },
+  {
     key: 'Content-Security-Policy',
     value: ContentSecurityPolicy,
   },
@@ -36,10 +41,18 @@ const securityHeaders = [
     key: 'Permissions-Policy',
     value: 'camera=(), microphone=(), geolocation=()',
   },
+  {
+    key: 'Cross-Origin-Opener-Policy',
+    value: 'same-origin',
+  },
+  {
+    key: 'X-Robots-Tag',
+    value: 'noindex, nofollow',
+  },
 ];
 
 const nextConfig: NextConfig = {
-  allowedDevOrigins: isLanDev ? ['192.168.43.73'] : undefined,
+  allowedDevOrigins: isLanDev && lanDevHost ? [lanDevHost] : undefined,
 
   experimental: {
     viewTransition: true,

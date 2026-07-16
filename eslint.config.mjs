@@ -2,7 +2,6 @@ import { defineConfig, globalIgnores } from 'eslint/config';
 import nextVitals from 'eslint-config-next/core-web-vitals';
 import nextTs from 'eslint-config-next/typescript';
 import tseslint from 'typescript-eslint';
-import globals from 'globals';
 import unicorn from 'eslint-plugin-unicorn';
 import perfectionist from 'eslint-plugin-perfectionist';
 import unusedImports from 'eslint-plugin-unused-imports';
@@ -17,16 +16,8 @@ const eslintConfig = defineConfig([
   // TypeScript強化
   {
     files: ['**/*.{ts,tsx}'],
-    extends: [
-      tseslint.configs.recommendedTypeChecked,
-      tseslint.configs.strictTypeChecked,
-      tseslint.configs.stylisticTypeChecked,
-    ],
+    extends: [tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked],
     languageOptions: {
-      globals: {
-        ...globals.browser,
-        ...globals.node,
-      },
       parserOptions: {
         project: true, // 自動検出
       },
@@ -36,7 +27,6 @@ const eslintConfig = defineConfig([
       '@typescript-eslint/no-invalid-void-type': 'off', // voidを戻り値以外の場所で使うことを許可
       '@typescript-eslint/no-misused-promises': ['error', { checksVoidReturn: { attributes: false } }], // HTML属性（onClickなど）で void 型を返す(Promiseを使用してもエラーにしない)
       '@typescript-eslint/no-non-null-assertion': 'off', // ! を許可する
-      '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }], // 引数名がアンダースコア（_）で始まる場合、その引数を未使用として無視する
     },
   },
 
@@ -49,7 +39,7 @@ const eslintConfig = defineConfig([
       },
     },
     rules: {
-      'import/no-unresolved': ['error', { ignore: ['^virtual:'] }],
+      'import/no-unresolved': 'error',
     },
   },
 

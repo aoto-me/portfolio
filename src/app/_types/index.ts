@@ -1,6 +1,7 @@
 export interface Detail {
   heading: string;
   images: Image[];
+  link?: string;
   list?: string;
   listTitle?: string;
   text: string;
@@ -20,6 +21,7 @@ export interface WorksDef {
   detail: Detail[];
   frontImage: Image;
   github?: string;
+  hosting: string[];
   id: string;
   language: string[];
   part: string[];

@@ -112,22 +112,26 @@
     }
 
     &[data-slide='2'] {
-      background-color: #d0f2db;
+      background-color: #174274;
     }
 
     &[data-slide='3'] {
-      background-color: #f1edcb;
+      background-color: #d0f2db;
     }
 
     &[data-slide='4'] {
-      background-color: #353535;
+      background-color: #f1edcb;
     }
 
     &[data-slide='5'] {
-      background-color: #cfeef2;
+      background-color: #353535;
     }
 
     &[data-slide='6'] {
+      background-color: #cfeef2;
+    }
+
+    &[data-slide='7'] {
       background-color: #e09238;
     }
   }
@@ -666,22 +670,26 @@
       }
 
       &[data-slide='2'] {
-        --circle-color: rgba(187, 255, 218, 0.8);
+        --circle-color: rgba(95, 170, 255, 0.9);
       }
 
       &[data-slide='3'] {
-        --circle-color: rgba(255, 248, 183, 0.85);
+        --circle-color: rgba(187, 255, 218, 0.8);
       }
 
       &[data-slide='4'] {
-        --circle-color: rgba(255, 185, 185, 0.8);
+        --circle-color: rgba(255, 248, 183, 0.85);
       }
 
       &[data-slide='5'] {
-        --circle-color: rgba(179, 244, 255, 0.8);
+        --circle-color: rgba(255, 185, 185, 0.8);
       }
 
       &[data-slide='6'] {
+        --circle-color: rgba(179, 244, 255, 0.8);
+      }
+
+      &[data-slide='7'] {
         --circle-color: rgba(255, 209, 156, 0.85);
       }
 

@@ -2,7 +2,7 @@
   --nav-height: 350px;
   --frame-position: min(3vw, 20px);
   aspect-ratio: 1 / 1;
-  width: clamp(70px, calc(50vh - (var(--nav-height) / 2)), 250px);
+  width: clamp(70px, calc(48vh - (var(--nav-height) / 2)), 240px);
   height: auto;
   background-image: url('/img/frame.svg');
   background-size: cover;
@@ -11,11 +11,11 @@
   position: absolute;
 
   @media (width <= $lg) {
-    width: clamp(70px, calc(50vh - (var(--nav-height) / 2)), calc(25vw - (var(--logo-height, 54px) / 2)));
+    width: clamp(70px, calc(48vh - (var(--nav-height) / 2)), calc(25vw - (var(--logo-height, 54px) / 2)));
   }
 
   @media (width <= $md) {
-    width: min(250px, calc(28vw - (var(--logo-height, 54px) / 2)));
+    width: min(240px, calc(28vw - (var(--logo-height, 54px) / 2)));
   }
 
   &--left-top {

@@ -143,6 +143,18 @@ const PostPage = async ({ params }: { params: Promise<{ id: string }> }) => {
                             </div>
                           </dl>
                         )}
+                        {works.id === 'toolbox' && (
+                          <dl aria-label="テスト用アカウント">
+                            <div>
+                              <dt>メールアドレス</dt>
+                              <dd>test@example.com</dd>
+                            </div>
+                            <div>
+                              <dt>パスワード</dt>
+                              <dd>test1234</dd>
+                            </div>
+                          </dl>
+                        )}
                       </dd>
                     </div>
 
@@ -164,6 +176,7 @@ const PostPage = async ({ params }: { params: Promise<{ id: string }> }) => {
                     </div>
 
                     <DlItem items={works.cms} label="CMS" />
+                    <DlItem items={works.hosting} label="ホスティングサービス" />
                     <DlItem items={works.db} label="DB" />
                     <DlItem items={works.language} label="言語・開発環境" />
                     <DlItem items={works.tool} label="アプリケーション" />
@@ -191,7 +204,7 @@ const PostPage = async ({ params }: { params: Promise<{ id: string }> }) => {
                 />
               )}
 
-              {(works.id === 'portfolio' || works.id === 'schedule-app') && (
+              {(works.id === 'portfolio' || works.id === 'schedule-app' || works.id === 'toolbox') && (
                 <CaseBlock
                   screenReaderTitle="サイト制作にあたっての目標"
                   sections={[{ heading: '目標', text: works.solution }]}

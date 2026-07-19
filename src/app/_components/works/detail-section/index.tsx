@@ -8,7 +8,7 @@ interface DetailSectionProps {
 }
 
 export const DetailSection = ({ children, item }: DetailSectionProps) => (
-  <div className={styles.detail} data-detail>
+  <div className={styles.detail} data-detail id={item.heading.trim().replaceAll(/\s+/g, '-')}>
     <h2>{item.heading}</h2>
     {item.images.map((image, i) => (
       <figure key={i}>
@@ -36,6 +36,16 @@ export const DetailSection = ({ children, item }: DetailSectionProps) => (
           </ul>
         )}
       </section>
+    )}
+    {item.link && (
+      <p>
+        より詳細な内容は、
+        <a href={item.link} rel="noopener noreferrer" target="_blank">
+          README
+          <span className="u-screenReader">（新しいウィンドウで開く）</span>
+        </a>
+        をご覧ください。
+      </p>
     )}
     {children}
   </div>

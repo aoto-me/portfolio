@@ -1,13 +1,16 @@
-# パッケージ更新状況（2026年7月）
+# パッケージ更新状況
+
+最終更新: 2026-07-28
 
 ## 今の状態
 
-| パッケージ                          | 現在  | 備考             |
-| ----------------------------------- | ----- | ---------------- |
-| `eslint-import-resolver-typescript` | 4.x   | 明示的に固定     |
-| `typescript`                        | 6.0.3 | 7.x系は見送り中  |
-| `eslint`                            | 9.x   | 10.x系は見送り中 |
-| `eslint-plugin-unicorn`             | 64.x  | 72.x系は見送り中 |
+| パッケージ                          | 現在  | 備考                              |
+| ----------------------------------- | ----- | --------------------------------- |
+| `eslint-import-resolver-typescript` | 4.x   | 明示的に固定                      |
+| `typescript`                        | 6.0.3 | 7.x系は見送り中                   |
+| `eslint`                            | 9.x   | 10.x系は見送り中                  |
+| `eslint-plugin-unicorn`             | 65.x  | 66.x系以降は`eslint` 10.x待ち     |
+| `postcss` / `sharp`                 | -     | `next` が固定しているため更新不可 |
 
 &nbsp;
 
@@ -38,16 +41,47 @@
 
 ### `typescript` — 7.x系
 
-現在は `typescript-eslint@8.63.0` が対応している範囲（`>=4.8.4 <6.1.0`）内の `6.0.3` を使用。<br/>
+現在は `typescript-eslint@8.65.0`（最新）が対応している範囲（`>=4.8.4 <6.1.0`）内の `6.0.3` を使用。<br/>
 7.x系は `typescript-eslint` がまだ未対応のため見送り中。`typescript-eslint` が対応したら更新できる。<br/>
 なお、上記のresolverのバージョン（3系/4系）とTypeScript 6系が問題なく動くかどうかは無関係。
 
+`typescript@7.0.2` のインストールを試すと、npm がpeer依存の衝突で拒否する（`--dry-run` で確認済み）。
+
 ### `eslint` — 9.x → 10.x
 
-`eslint-config-next` が内部で使っている `eslint-plugin-react@7.37.5` が、ESLint 10 で廃止されたAPI（`context.getFilename()`）を使っているため、更新するとlintがエラーになる（`node_modules/eslint-plugin-react/lib/rules/jsx-filename-extension.js:64` で使用箇所を確認済み）。
+`eslint-config-next` が内部で使っている `eslint-plugin-react@7.37.5` が、ESLint 10 で廃止されたAPI（`context.getFilename()`）を使っているため、更新するとlintがエラーになる。使用箇所は2つ確認済み。
 
-**更新できる条件**: `eslint-config-next` が `eslint-plugin-react` をESLint 10対応版に上げること。
+- `lib/rules/jsx-filename-extension.js:64` — `context.getFilename()`
+- `lib/util/version.js:31` — `contextOrFilename.getFilename()`
 
-### `eslint-plugin-unicorn` — 64.x → 72.x
+実際に `eslint@10.8.0` を入れて `npm run lint` を実行すると、後者で全ファイルのlintが停止する。
 
-新しいバージョンが `eslint: >=10.4` を要求するため、上の `eslint` 10.x 更新待ち。
+`eslint-plugin-react` は最新の `7.37.5` でもpeerが `eslint: ^3 || ... || ^9.7` までで、ESLint 10 に未対応。<br/>
+つまり `eslint-config-next` 側だけの問題ではなく、`eslint-plugin-react` 本体の対応リリース待ち。
+
+**更新できる条件**: `eslint-plugin-react` がESLint 10対応版を出し、`eslint-config-next` がそれを取り込むこと。
+
+### `eslint-plugin-unicorn` — 66.x以降
+
+66.x以降が `eslint: >=10.4` を要求するため、上の `eslint` 10.x 更新待ち。<br/>
+65.x は `eslint: >=9.38.0` なので現在の `eslint@9.39.5` で動作する。<br/>
+**ESLint 9 で使える上限が 65.x** となるため、そこまでは更新済み。
+
+&nbsp;
+
+## `next` が固定している推移的依存（`postcss` / `sharp`）
+
+`package.json` に書いていないが、`next` の依存として入っている2つに脆弱性アドバイザリが出ている。<br/>
+どちらも `next` 側がバージョンを固定しているため、**こちらの操作では更新できない**。
+
+| パッケージ | 現在   | 安全なバージョン | `next` 側の指定                 |
+| ---------- | ------ | ---------------- | ------------------------------- |
+| `postcss`  | 8.4.31 | `>=8.5.10`       | `postcss: "8.4.31"`（完全固定） |
+| `sharp`    | 0.34.5 | `>=0.35.0`       | `sharp: "^0.34.5"`              |
+
+最新の `next@16.2.12` でもこの指定は変わっていない。**`next` 本体が上げるまで解消不可。**
+
+### GitHub Actions が失敗し続ける件
+
+この2件が原因で、Dependabotのsecurity updateジョブが `security_update_not_possible` で失敗する。<br/>
+リポジトリ自体のCIワークフローは存在しないため、**Actionsタブに並ぶ失敗はすべてDependabot由来**で、ビルドが壊れているわけではない。

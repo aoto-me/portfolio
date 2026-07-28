@@ -178,7 +178,7 @@ const PostPage = async ({ params }: { params: Promise<{ id: string }> }) => {
                     <DlItem items={works.cms} label="CMS" />
                     <DlItem items={works.hosting} label="ホスティングサービス" />
                     <DlItem items={works.db} label="DB" />
-                    <DlItem items={works.language} label="言語・開発環境" />
+                    <DlItem items={works.language} label="技術スタック・開発環境" />
                     <DlItem items={works.tool} label="アプリケーション" />
                   </dl>
                   <p className={styles.summary__text}>{works.text}</p>
@@ -204,7 +204,7 @@ const PostPage = async ({ params }: { params: Promise<{ id: string }> }) => {
                 />
               )}
 
-              {(works.id === 'portfolio' || works.id === 'schedule-app' || works.id === 'toolbox') && (
+              {['portfolio', 'schedule-app', 'toolbox'].includes(works.id) && (
                 <CaseBlock
                   screenReaderTitle="サイト制作にあたっての目標"
                   sections={[{ heading: '目標', text: works.solution }]}
@@ -241,7 +241,7 @@ const PostPage = async ({ params }: { params: Promise<{ id: string }> }) => {
                         rel="noopener noreferrer"
                         target="_blank"
                       >
-                        チェックリスト
+                        セキュリティチェックリスト
                         <span className="u-screenReader">（新しいウィンドウで開く）</span>
                       </a>
                       をご覧ください。

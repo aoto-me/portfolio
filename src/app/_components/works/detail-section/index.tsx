@@ -12,8 +12,8 @@ export const DetailSection = ({ children, item }: DetailSectionProps) => (
     <h2>{item.heading}</h2>
     {item.images.map((image, i) => (
       <figure key={i}>
-        <Image alt={image.alt.split('　')[0]} height={image.height} src={image.url} width={image.width} />
-        <figcaption>{image.alt.split('　')[1]}</figcaption>
+        <Image alt={image.alt.split('　', 1)[0]} height={image.height} src={image.url} width={image.width} />
+        <figcaption>{image.alt.split('　', 2)[1]}</figcaption>
       </figure>
     ))}
     {item.text

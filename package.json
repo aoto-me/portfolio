@@ -16,7 +16,7 @@
     "prepare": "husky"
   },
   "dependencies": {
-    "@types/three": "^0.185.1",
+    "@types/three": "^0.186.0",
     "clsx": "^2.1.1",
     "gsap": "^3.15.0",
     "microcms-js-sdk": "^3.6.0",
@@ -24,7 +24,7 @@
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
     "swiper": "^14.3.0",
-    "three": "^0.185.1"
+    "three": "^0.186.1"
   },
   "devDependencies": {
     "@types/node": "^26.6.5",

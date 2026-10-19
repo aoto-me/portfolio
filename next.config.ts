@@ -52,11 +52,8 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
+  agentRules: false,
   allowedDevOrigins: isLanDev && lanDevHost ? [lanDevHost] : undefined,
-
-  experimental: {
-    viewTransition: true,
-  },
 
   headers() {
     if (isLanDev) {
